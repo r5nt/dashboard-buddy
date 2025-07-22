@@ -1,0 +1,26 @@
+{
+    "name": "dashboard-buddy",
+    "version": "0.0.1",
+    "private": true,
+    "license": "MIT",
+    "workspaces": [
+        "client",
+        "server",
+        "modules/*",
+        "services/*"
+    ],
+    "scripts": {
+        "dev": "concurrently \"npm:dev:client\" \"npm:dev:server\" \"npm:dev:calendar\"",
+        "build": "yarn workspaces foreach run build",
+        "start": "concurrently \"npm:start:server\" \"npm:start:calendar\"",
+        "dev:client": "yarn workspace client dev",
+        "dev:server": "yarn workspace server dev",
+        "dev:calendar": "yarn workspace @dashboard-buddy/calendar-manager dev",
+        "start:server": "yarn workspace server start",
+        "start:calendar": "yarn workspace @dashboard-buddy/calendar-manager start"
+    },
+    "dependencies": {},
+    "devDependencies": {
+        "concurrently": "^8.2.2"
+    }
+}

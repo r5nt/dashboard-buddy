@@ -1,0 +1,45 @@
+// Theme Colors
+$primary-theme-color: #051A39;
+$secondary-theme-color: #FFFFFF;
+
+// Misc. Colors
+$disabled-color: #EBEBE4;
+$error-color: #DF1B41;
+$off-white-color: #FFFFF2;
+$success-color: #C8E6C9;
+$white-color: #FFFFFF;
+
+// Screen-width breakpoints
+$screen-xs-min: 0px;
+$screen-sm-min: 600px;
+$screen-md-min: 900px;
+$screen-lg-min: 1200px;
+$screen-xl-min: 1536px;
+
+@mixin sm {
+    @media (min-width: #{$screen-sm-min}) {
+        @content;
+    }
+ }
+ 
+ @mixin md {
+    @media (min-width: #{$screen-md-min}) {
+        @content;
+    }
+ }
+ 
+ @mixin lg {
+    @media (min-width: #{$screen-lg-min}) {
+        @content;
+    }
+ }
+ 
+ @mixin xl {
+    @media (min-width: #{$screen-xl-min}) {
+        @content;
+    }
+ }
+
+:export {
+    primaryThemeColor: $primary-theme-color;
+}
