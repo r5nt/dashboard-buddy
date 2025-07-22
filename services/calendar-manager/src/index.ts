@@ -1,7 +1,7 @@
 import Fastify from 'fastify';
 import { type ZodTypeProvider, validatorCompiler, serializerCompiler } from 'fastify-type-provider-zod';
 
-import { CreateEventBodySchema, type CreateEventRoute } from '@dashboard-buddy/types';
+import { CreateEventBodySchema, type CreateEventRoute } from '@dashboard-buddy/types/calendar';
 
 import { createEvent } from './endpoints/events/createEvent.js';
 import { getEvents } from './endpoints/events/getEvents.js';

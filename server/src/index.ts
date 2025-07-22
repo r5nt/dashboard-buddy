@@ -4,8 +4,7 @@ import fastifyStatic from '@fastify/static';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-
-import type { ApiResponse } from '@dashboard-buddy/types';
+import type { ApiResponse } from '@dashboard-buddy/types/api';
 
 const server = Fastify({ logger: true });
 

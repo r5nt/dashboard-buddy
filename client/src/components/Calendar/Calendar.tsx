@@ -17,7 +17,7 @@ import { useTheme } from '@mui/material/styles';
 import dayjs from 'dayjs';
 import { z } from 'zod';
 
-import { type CalendarEvents, CalendarEventsArraySchema } from '@dashboard-buddy/types';
+import { type CalendarEvents, CalendarEventsArraySchema } from '@dashboard-buddy/types/calendar';
 
 import type { FunctionComponent } from 'react';
 import type { EventApi, EventInput } from '@fullcalendar/core';

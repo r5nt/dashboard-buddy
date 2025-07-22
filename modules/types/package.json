@@ -8,6 +8,16 @@
     "build": "tsc",
     "lint": "eslint ."
   },
+  "exports": {
+    "./api": {
+      "types": "./dist/api.d.ts",
+      "import": "./dist/api.js"
+    },
+    "./calendar": {
+      "types": "./dist/calendar.d.ts",
+      "import": "./dist/calendar.js"
+    }
+  },
   "dependencies": {
     "fastify": "^5.4.0",
     "zod": "^4.0.5"
