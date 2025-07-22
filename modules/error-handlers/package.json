@@ -1,5 +1,5 @@
 {
-  "name": "@dashboard-buddy/types",
+  "name": "@dashboard-buddy/error-handlers",
   "version": "0.0.1",
   "type": "module",
   "main": "dist/index.js",
@@ -12,15 +12,7 @@
     "./api": {
       "types": "./dist/api.d.ts",
       "import": "./dist/api.js"
-    },
-    "./calendar": {
-      "types": "./dist/calendar.d.ts",
-      "import": "./dist/calendar.js"
     }
-  },
-  "dependencies": {
-    "fastify": "^5.4.0",
-    "zod": "^4.0.5"
   },
   "devDependencies": {
     "@eslint/js": "^9.31.0",

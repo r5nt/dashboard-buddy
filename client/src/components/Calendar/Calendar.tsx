@@ -47,7 +47,8 @@ const translateEventDataForFullCalendar =
 const Calendar: FunctionComponent = () => {
     const [ eventAnchorEl, setEventAnchorEl ] = useState<HTMLElement | null>(null);
     const [ eventList, setEventList ] = useState<EventInput[]>([])
-    const [ getEventsStatus, setGetEventsStatus ] = useState<string>('loading');
+    // TODO: Add loading and error handling with getEventsStatus
+    const [ _getEventsStatus, setGetEventsStatus ] = useState<string>('loading');
     const [ selectedEvent, setSelectedEvent ] = useState<EventApi | null>(null);
 
     const calendarRef = useRef<InstanceType<typeof FullCalendar>>(null);

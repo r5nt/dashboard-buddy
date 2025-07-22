@@ -2,17 +2,15 @@
   "name": "@dashboard-buddy/database",
   "version": "0.0.1",
   "type": "module",
-  "main": "src/index.ts",
-  "types": "src/index.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
+    "build": "tsc",
     "lint": "eslint ."
   },
-  "dependencies": {
-    "pg": "^8.16.3"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@eslint/js": "^9.31.0",
-    "@types/pg": "^8.15.4",
     "eslint": "^9.31.0",
     "globals": "^16.3.0",
     "typescript-eslint": "^8.37.0"

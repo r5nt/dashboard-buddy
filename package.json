@@ -1,5 +1,8 @@
 {
     "name": "dashboard-buddy",
+    "author": {
+        "name": "Nicholas Hall"
+    },
     "version": "0.0.1",
     "private": true,
     "license": "MIT",
@@ -11,7 +14,7 @@
     ],
     "scripts": {
         "dev": "concurrently \"npm:dev:client\" \"npm:dev:server\" \"npm:dev:calendar\"",
-        "build": "yarn workspaces foreach run build",
+        "build": "yarn workspaces run build",
         "start": "concurrently \"npm:start:server\" \"npm:start:calendar\"",
         "dev:client": "yarn workspace client dev",
         "dev:server": "yarn workspace server dev",

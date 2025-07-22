@@ -7,7 +7,8 @@ An AI dashboard companion to boost your productivity
 ### Must haves
 - Allow updating and deleting calendar events
     - Add API endpoints for update and delete event
-    - Adjust UI interface to allow for updating and deleting
+    - Create endpoint to summarize calendar event data
+    - Adjust UI interface to allow for updating, deleting, and summary
 
 - Create user authentication and user sessions
     - Create table to store user data
@@ -21,9 +22,12 @@ An AI dashboard companion to boost your productivity
         - Create endpoint to summarize note data with AI
     - Create UI interface to manage notes
 
+- Add more robust logging
+
 ### Nice to have
 - Add prettier to normalize style patterns
 - Update eslint
     - Force semi-colons after statements
     - Force consistent spacing (i.e. double-space vs. tab)
-- Allow importing events from popular calendar applications (ex. Google Calendar, etc.)
+    - Force consistent spacing around brackets
+- Allow importing events from popular calendar applications with OAuth (ex. Google Calendar)

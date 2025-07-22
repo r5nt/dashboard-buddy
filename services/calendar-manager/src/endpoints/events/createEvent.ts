@@ -1,16 +1,20 @@
+import type { PoolClient, QueryResult } from 'pg';
 import { randomUUID } from 'node:crypto';
 
-import pool from '@dashboard-buddy/database';
+import { HttpError } from '@dashboard-buddy/error-handlers/api';
 
 import type { FastifyRequest, FastifyReply } from 'fastify';
-import type { CalendarEvent, CreateEventRoute } from '@dashboard-buddy/types'
+import type { CalendarEvent, CreateEventRoute } from '@dashboard-buddy/types/calendar'
 
 export const createEvent = async (
     request: FastifyRequest<CreateEventRoute>, 
     reply: FastifyReply
 ) => {
-    let client;
+    let client: PoolClient | undefined;
+
     try {
+        client = await request.server.pg.connect();
+
         const {
             body: {
                 title,
@@ -21,46 +25,28 @@ export const createEvent = async (
         } = request;
 
         const eventId = randomUUID();
-        const userId = randomUUID();  // When user table is made, pull this from session
-
-        client = await pool.connect();
+        const userId = randomUUID(); // TODO: When user table is made, pull this from session
 
         const sql = `
             INSERT INTO
-                calendar.events
-                (
-                    event_id,
-                    user_id,
-                    title,
-                    location,
-                    start_time,
-                    end_time
-                )
+                calendar.events (event_id, user_id, title, location, start_time, end_time)
             VALUES
-                (
-                    $1,
-                    $2,
-                    $3,
-                    $4,
-                    $5,
-                    $6
-                )
+                ($1, $2, $3, $4, $5, $6)
+            RETURNING *
         `;
 
         const values = [ eventId, userId, title, location, startTime, endTime ];
+            
+        const result: QueryResult<CalendarEvent> = await client.query<CalendarEvent>(sql, values);
 
-        const result = await client.query<CalendarEvent>(sql, values);
-
-        if (!result.rows.length) {
-            reply.send([]);
-            return;
+        if (result.rowCount !== 1) {
+            throw new HttpError(500, 'Failed to create the event resource.');
         }
 
-        reply.send(result.rows);
-    } catch (error) {
-        console.error({ error });
-        reply.code(500).send(error);
-        return;
+        reply.code(201).send(result.rows[0]);
+    } catch(error) {
+        request.log.error(error, 'Failed to get calendar events');
+        reply.status(500).send({ message: 'Internal Server Error' });
     } finally {
         if (client) {
             client.release();

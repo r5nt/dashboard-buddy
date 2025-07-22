@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "type": "module",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
     "dev": "tsx watch src/index.ts",
@@ -10,8 +11,11 @@
     "start": "node dist/index.js"
   },
   "dependencies": {
+    "@fastify/postgres": "^6.0.2",
+    "@types/pg": "^8.15.4",
     "fastify": "^5.4.0",
-    "fastify-type-provider-zod": "^5.0.2"
+    "fastify-type-provider-zod": "^5.0.2",
+    "pg": "^8.16.3"
   },
   "devDependencies": {
     "@dashboard-buddy/database": "0.0.1",

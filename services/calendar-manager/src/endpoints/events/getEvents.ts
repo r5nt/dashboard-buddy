@@ -1,12 +1,13 @@
-import pool from '@dashboard-buddy/database';
+import type { PoolClient, QueryResult } from 'pg';
+import type { FastifyRequest, FastifyReply } from 'fastify';
 
-import type { CalendarEvent } from '@dashboard-buddy/types';
-import type { FastifyReply } from 'fastify';
+import type { CalendarEvent } from '@dashboard-buddy/types/calendar';
 
-export const getEvents = async (reply: FastifyReply) => {
-    let client;
+export const getEvents = async (request: FastifyRequest, reply: FastifyReply) => {
+    let client: PoolClient | undefined;
+
     try {
-        client = await pool.connect();
+        client = await request.server.pg.connect();
 
         const sql = `
             SELECT
@@ -19,18 +20,11 @@ export const getEvents = async (reply: FastifyReply) => {
                 calendar.events
         `;
 
-        const result = await client.query<CalendarEvent>(sql);
-
-        if (!result.rows.length) {
-            reply.send([]);
-            return;
-        }
-
+        const result: QueryResult<CalendarEvent> = await client.query<CalendarEvent>(sql);
         reply.send(result.rows);
-    } catch (error) {
-        console.error({ error });
-        reply.code(500).send(error);
-        return;
+    } catch(error) {
+        request.log.error(error, 'Failed to get calendar events');
+        reply.status(500).send({ message: 'Internal Server Error' });
     } finally {
         if (client) {
             client.release();
