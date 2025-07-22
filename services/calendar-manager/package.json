@@ -10,7 +10,8 @@
     "start": "node dist/index.js"
   },
   "dependencies": {
-    "fastify": "^5.4.0"
+    "fastify": "^5.4.0",
+    "fastify-type-provider-zod": "^5.0.2"
   },
   "devDependencies": {
     "@dashboard-buddy/database": "0.0.1",

@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import type { RouteGenericInterface } from 'fastify';
 
 const _ApiResponseSchema = z.object({
     success: z.boolean()
@@ -25,3 +26,16 @@ export type CalendarEvent = z.infer<typeof CalendarEventSchema>;
 export const CalendarEventsArraySchema = z.array(CalendarEventSchema)
 
 export type CalendarEvents = z.infer<typeof CalendarEventsArraySchema>;
+
+export const CreateEventBodySchema = z.object({
+  title: z.string().max(255),
+  location: z.string().max(255).nullable(),
+  startTime: z.iso.datetime(),
+  endTime: z.iso.datetime()
+});
+
+export type CreateEventBody = z.infer<typeof CreateEventBodySchema>;
+
+export interface CreateEventRoute extends RouteGenericInterface {
+  Body: CreateEventBody
+};

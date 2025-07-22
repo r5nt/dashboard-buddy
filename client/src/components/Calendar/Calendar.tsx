@@ -34,7 +34,8 @@ const _EventExtendedProps = z.object({
 
 const translateEventDataForFullCalendar =
     ({ eventData }: { eventData: CalendarEvents }): EventInput[] =>
-        eventData.map(({ title, location, startTime, endTime }) => ({
+        eventData.map(({ eventId, title, location, startTime, endTime }) => ({
+            eventId,
             end: endTime,
             start: startTime,
             extendedProps: {

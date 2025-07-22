@@ -1,12 +1,14 @@
 import Fastify from 'fastify';
-import path from 'path';
-import { fileURLToPath } from 'url';
 import fastifyProxy from '@fastify/http-proxy';
 import fastifyStatic from '@fastify/static';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
 
 import type { ApiResponse } from '@dashboard-buddy/types';
 
 const server = Fastify({ logger: true });
+
 const PORT = 3001;
 
 const __filename = fileURLToPath(import.meta.url);
